@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.User = void 0;
 const bcrypt = require("bcrypt");
 const class_transformer_1 = require("class-transformer");
+const role_enum_1 = require("../../../common/enum/role.enum");
 const typeorm_1 = require("typeorm");
 let User = class User {
     constructor(data = {}) {
@@ -45,6 +46,10 @@ __decorate([
     (0, class_transformer_1.Exclude)(),
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: role_enum_1.Role.USER }),
+    __metadata("design:type", String)
+], User.prototype, "role", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

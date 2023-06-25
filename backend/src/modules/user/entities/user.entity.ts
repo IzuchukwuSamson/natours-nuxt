@@ -1,5 +1,8 @@
 import * as bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
+import { IsString, IsNotEmpty, IsEnum } from 'class-validator';
+import { Role } from 'src/common/enum/role.enum';
+
 import {
   Entity,
   PrimaryGeneratedColumn,
@@ -24,6 +27,9 @@ export class User {
   @Column()
   @Exclude()
   password: string;
+
+  @Column({ default: Role.USER })
+  role: Role;
 
   @CreateDateColumn()
   createdAt: Date;
