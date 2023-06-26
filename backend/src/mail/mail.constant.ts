@@ -1,3 +1,3 @@
-export const EMAIL_QUEUE_NAME = 'email';
+export const EMAIL = 'email';
 
-export const WELCOME_JOB_NAME = 'welcome';
+export const WELCOME = 'welcome';

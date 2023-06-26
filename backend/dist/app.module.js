@@ -19,6 +19,11 @@ const config_1 = require("@nestjs/config");
 const typeorm_1 = require("@nestjs/typeorm");
 const tour_entity_1 = require("./modules/tour/entities/tour.entity");
 const review_entity_1 = require("./modules/review/entities/review.entity");
+const bull_1 = require("@nestjs/bull");
+const mailer_1 = require("@nestjs-modules/mailer");
+const bull_config_1 = require("./config/bull.config");
+const mailer_config_1 = require("./config/mailer.config");
+const mail_config_1 = require("./config/mail.config");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -28,6 +33,7 @@ AppModule = __decorate([
         imports: [
             config_1.ConfigModule.forRoot({
                 isGlobal: true,
+                load: [bull_config_1.default, mailer_config_1.default, mail_config_1.default],
                 envFilePath: ['.env', '.env.production'],
             }),
             typeorm_1.TypeOrmModule.forRootAsync({
@@ -43,6 +49,18 @@ AppModule = __decorate([
                         entities: [tour_entity_1.Tour, review_entity_1.Review, user_entity_1.User],
                         synchronize: true,
                     };
+                },
+            }),
+            bull_1.BullModule.registerQueueAsync({
+                inject: [config_1.ConfigService],
+                useFactory(config) {
+                    return config.get('bull');
+                },
+            }),
+            mailer_1.MailerModule.forRootAsync({
+                inject: [config_1.ConfigService],
+                useFactory(config) {
+                    return config.get('mailer');
                 },
             }),
             tour_module_1.TourModule,

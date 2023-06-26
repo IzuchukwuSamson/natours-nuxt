@@ -13,12 +13,12 @@ const auth_controller_1 = require("./auth.controller");
 const user_module_1 = require("../user/user.module");
 const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
+const bull_1 = require("@nestjs/bull");
 const local_strategy_1 = require("./strategies/local.strategy");
 const session_serializer_1 = require("./session.serializer");
 const jwt_strategy_1 = require("./strategies/jwt.strategy");
 const config_1 = require("@nestjs/config");
-const dotenv = require("dotenv");
-dotenv.config();
+const mail_constant_1 = require("../../mail/mail.constant");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
@@ -38,6 +38,7 @@ AuthModule = __decorate([
                     };
                 },
             }),
+            bull_1.BullModule.registerQueue({ name: mail_constant_1.EMAIL }),
         ],
         controllers: [auth_controller_1.AuthController],
         providers: [

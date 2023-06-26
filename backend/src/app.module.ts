@@ -10,6 +10,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Tour } from './modules/tour/entities/tour.entity';
 import { Review } from './modules/review/entities/review.entity';
+import { BullModule } from '@nestjs/bull';
+import { MailerModule } from '@nestjs-modules/mailer';
+import bull from './config/bull.config';
+import mailer from './config/mailer.config';
+import mail from './config/mail.config';
 
 @Module({
   controllers: [AppController],
@@ -17,6 +22,7 @@ import { Review } from './modules/review/entities/review.entity';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
+      load: [bull, mailer, mail],
       envFilePath: ['.env', '.env.production'],
     }),
     TypeOrmModule.forRootAsync({
@@ -32,6 +38,19 @@ import { Review } from './modules/review/entities/review.entity';
           entities: [Tour, Review, User],
           synchronize: true, //should not be used in production or else you will lose the data
         };
+      },
+    }),
+
+    BullModule.registerQueueAsync({
+      inject: [ConfigService],
+      useFactory(config: ConfigService) {
+        return config.get('bull');
+      },
+    }),
+    MailerModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory(config: ConfigService) {
+        return config.get('mailer');
       },
     }),
 

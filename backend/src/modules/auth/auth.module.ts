@@ -12,12 +12,8 @@ import { LocalStrategy } from './strategies/local.strategy';
 import { SessionSerializer } from './session.serializer';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import * as dotenv from 'dotenv';
 import { jwtConstants } from './guards/constants';
-// import { jwtConstants } from './strategies/jwt.constants';
-// import { EMAIL_QUEUE_NAME } from '../mail/mail.constant';
-
-dotenv.config();
+import { EMAIL } from 'src/mail/mail.constant';
 
 @Module({
   imports: [
@@ -36,13 +32,7 @@ dotenv.config();
         };
       },
     }),
-    // TypeOrmModule.forFeature([User]),
-    // BullModule.registerQueue({ name: EMAIL_QUEUE_NAME }),
-    // JwtModule.register({
-    //   global: true,
-    //   secret: jwtConstants.secret,
-    //   signOptions: { expiresIn: '60s' },
-    // }),
+    BullModule.registerQueue({ name: EMAIL }),
   ],
   controllers: [AuthController],
   providers: [

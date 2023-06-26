@@ -8,22 +8,26 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const jwt_1 = require("@nestjs/jwt");
+const bull_1 = require("@nestjs/bull");
 const user_service_1 = require("../user/user.service");
-const util_1 = require("util");
-const crypto_1 = require("crypto");
-const scrypt = (0, util_1.promisify)(crypto_1.scrypt);
+const mail_constant_1 = require("../../mail/mail.constant");
 let AuthService = class AuthService {
-    constructor(userService, jwtService) {
+    constructor(userService, jwtService, emailQueue) {
         this.userService = userService;
         this.jwtService = jwtService;
+        this.emailQueue = emailQueue;
     }
     async register(newUser) {
-        const user = this.userService.create(newUser);
+        const user = await this.userService.create(newUser);
         delete newUser.password;
+        await this.emailQueue.add(mail_constant_1.WELCOME, user);
         return user;
     }
     async login(email, password) {
@@ -60,8 +64,9 @@ let AuthService = class AuthService {
 };
 AuthService = __decorate([
     (0, common_1.Injectable)(),
+    __param(2, (0, bull_1.InjectQueue)(mail_constant_1.EMAIL)),
     __metadata("design:paramtypes", [user_service_1.UserService,
-        jwt_1.JwtService])
+        jwt_1.JwtService, Object])
 ], AuthService);
 exports.AuthService = AuthService;
 //# sourceMappingURL=auth.service.js.map
