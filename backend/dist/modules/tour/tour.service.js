@@ -33,6 +33,14 @@ let TourService = class TourService {
         const tour = await this.repo.findOne({ where: { id } });
         return tour;
     }
+    async findUserTours(id) {
+        const tour = await this.repo
+            .createQueryBuilder('tour')
+            .leftJoinAndSelect('tour.user', 'user')
+            .where(`user.id = :id`, { id })
+            .getMany();
+        return tour;
+    }
     async update(id, attrs) {
         const tour = await this.findOne(id);
         if (!tour) {

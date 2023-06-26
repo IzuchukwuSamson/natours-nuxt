@@ -27,6 +27,16 @@ export class TourService {
     return tour;
   }
 
+  async findUserTours(id: string): Promise<Tour[] | null> {
+    const tour = await this.repo
+      .createQueryBuilder('tour')
+      .leftJoinAndSelect('tour.user', 'user')
+      .where(`user.id = :id`, { id })
+      .getMany();
+
+    return tour;
+  }
+
   async update(id: number, attrs: Partial<Tour>) {
     const tour = await this.findOne(id);
     if (!tour) {

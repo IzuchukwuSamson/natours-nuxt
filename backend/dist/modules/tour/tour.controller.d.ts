@@ -8,6 +8,7 @@ export declare class TourController {
     create(createTourDto: CreateTourDto): Tour;
     findAll(): Promise<Tour[]>;
     findOne(id: string): Promise<Tour>;
+    getUserTours(req: any): Promise<Tour[]>;
     update(id: string, updateTourDto: UpdateTourDto): Promise<Tour>;
     remove(id: string): Promise<Tour>;
 }

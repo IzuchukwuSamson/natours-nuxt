@@ -11,7 +11,7 @@ import {
 import { UserService } from './user.service';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserDto } from './dto/user.dto';
-import { Serialize } from './interceptors/serialize.interceptor';
+import { Serialize } from '../serialize.interceptor';
 
 @Controller('profile')
 @Serialize(UserDto)

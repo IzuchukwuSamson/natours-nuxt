@@ -7,6 +7,7 @@ export declare class TourService {
     create(createTourDto: CreateTourDto): Tour;
     findAll(): Promise<Tour[]>;
     findOne(id: number): Promise<Tour>;
+    findUserTours(id: string): Promise<Tour[] | null>;
     update(id: number, attrs: Partial<Tour>): Promise<Tour>;
     remove(id: number): Promise<Tour>;
 }

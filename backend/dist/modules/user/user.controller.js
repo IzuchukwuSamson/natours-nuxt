@@ -17,7 +17,7 @@ const common_1 = require("@nestjs/common");
 const user_service_1 = require("./user.service");
 const update_user_dto_1 = require("./dto/update-user.dto");
 const user_dto_1 = require("./dto/user.dto");
-const serialize_interceptor_1 = require("./interceptors/serialize.interceptor");
+const serialize_interceptor_1 = require("../serialize.interceptor");
 let UserController = class UserController {
     constructor(usersService) {
         this.usersService = usersService;
