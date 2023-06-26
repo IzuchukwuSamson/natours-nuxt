@@ -10,12 +10,15 @@ exports.TourModule = void 0;
 const common_1 = require("@nestjs/common");
 const tour_service_1 = require("./tour.service");
 const tour_controller_1 = require("./tour.controller");
+const typeorm_1 = require("@nestjs/typeorm");
+const tour_entity_1 = require("./entities/tour.entity");
 let TourModule = class TourModule {
 };
 TourModule = __decorate([
     (0, common_1.Module)({
+        imports: [typeorm_1.TypeOrmModule.forFeature([tour_entity_1.Tour])],
         controllers: [tour_controller_1.TourController],
-        providers: [tour_service_1.TourService]
+        providers: [tour_service_1.TourService],
     })
 ], TourModule);
 exports.TourModule = TourModule;

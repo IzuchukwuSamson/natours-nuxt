@@ -30,7 +30,7 @@ export class TourService {
   async update(id: number, attrs: Partial<Tour>) {
     const tour = await this.findOne(id);
     if (!tour) {
-      throw new NotFoundException('Song not found');
+      throw new NotFoundException(`Tour with id: ${id} was not found `);
     }
 
     Object.assign(tour, attrs);
@@ -41,7 +41,7 @@ export class TourService {
   async remove(id: number) {
     const tour = await this.findOne(id);
     if (!tour) {
-      throw new NotFoundException('Song not found');
+      throw new NotFoundException(`Tour with id: ${id} was not found `);
     }
 
     return this.repo.remove(tour);

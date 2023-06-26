@@ -38,7 +38,8 @@ let TourController = class TourController {
     }
 };
 __decorate([
-    (0, common_1.Post)(),
+    (0, common_1.Post)('create'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.CREATED),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [create_tour_dto_1.CreateTourDto]),
@@ -46,12 +47,14 @@ __decorate([
 ], TourController.prototype, "create", null);
 __decorate([
     (0, common_1.Get)(),
+    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
+    __metadata("design:returntype", Promise)
 ], TourController.prototype, "findAll", null);
 __decorate([
     (0, common_1.Get)(':id'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.OK),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),
@@ -59,6 +62,7 @@ __decorate([
 ], TourController.prototype, "findOne", null);
 __decorate([
     (0, common_1.Patch)(':id'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.CREATED),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -67,6 +71,7 @@ __decorate([
 ], TourController.prototype, "update", null);
 __decorate([
     (0, common_1.Delete)(':id'),
+    (0, common_1.HttpCode)(common_1.HttpStatus.NO_CONTENT),
     __param(0, (0, common_1.Param)('id')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [String]),

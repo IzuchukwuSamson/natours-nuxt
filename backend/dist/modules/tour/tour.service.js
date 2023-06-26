@@ -36,7 +36,7 @@ let TourService = class TourService {
     async update(id, attrs) {
         const tour = await this.findOne(id);
         if (!tour) {
-            throw new common_1.NotFoundException('Song not found');
+            throw new common_1.NotFoundException(`Tour with id: ${id} was not found `);
         }
         Object.assign(tour, attrs);
         return this.repo.save(tour);
@@ -44,7 +44,7 @@ let TourService = class TourService {
     async remove(id) {
         const tour = await this.findOne(id);
         if (!tour) {
-            throw new common_1.NotFoundException('Song not found');
+            throw new common_1.NotFoundException(`Tour with id: ${id} was not found `);
         }
         return this.repo.remove(tour);
     }
