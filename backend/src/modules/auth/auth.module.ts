@@ -38,6 +38,11 @@ dotenv.config();
     }),
     // TypeOrmModule.forFeature([User]),
     // BullModule.registerQueue({ name: EMAIL_QUEUE_NAME }),
+    // JwtModule.register({
+    //   global: true,
+    //   secret: jwtConstants.secret,
+    //   signOptions: { expiresIn: '60s' },
+    // }),
   ],
   controllers: [AuthController],
   providers: [

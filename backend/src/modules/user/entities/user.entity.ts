@@ -19,7 +19,10 @@ export class User {
   id: number;
 
   @Column()
-  name: string;
+  firstname: string;
+
+  @Column()
+  lastname: string;
 
   @Column({ unique: true })
   email: string;
@@ -43,7 +46,7 @@ export class User {
 
   @BeforeInsert()
   async setPassword(password: string) {
-    const salt = await await bcrypt.genSalt();
+    const salt = await bcrypt.genSalt();
     this.password = await bcrypt.hash(password || this.password, salt);
   }
 

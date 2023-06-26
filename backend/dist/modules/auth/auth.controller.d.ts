@@ -5,7 +5,6 @@ import { Login } from './dto/login.dto';
 import { User } from '../user/entities/user.entity';
 export declare class AuthController {
     private readonly authService;
-    httpService: any;
     constructor(authService: AuthService);
     signup(signup: Signup, resp: Response): Promise<Response<any, Record<string, any>>>;
     login(login: Login, resp: Response): Promise<Response<any, Record<string, any>>>;

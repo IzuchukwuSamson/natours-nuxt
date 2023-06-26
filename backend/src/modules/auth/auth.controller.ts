@@ -21,10 +21,9 @@ import { JWTAuthGuard } from './guards/jwt-guard.guard';
 
 @Controller('auth')
 export class AuthController {
-  httpService: any;
   constructor(private readonly authService: AuthService) {}
 
-  @Post('signup')
+  @Post('register')
   @HttpCode(HttpStatus.CREATED)
   async signup(@Body() signup: Signup, @Res() resp: Response) {
     try {
@@ -36,7 +35,8 @@ export class AuthController {
         httpOnly: true,
         signed: true,
         sameSite: 'strict',
-        secure: process.env.NODE_ENV === 'production',
+        secure: true,
+        // secure: process.env.NODE_ENV === 'production',
       });
       resp.send(user);
 

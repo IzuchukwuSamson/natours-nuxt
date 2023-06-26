@@ -35,7 +35,7 @@ let AuthController = class AuthController {
                 httpOnly: true,
                 signed: true,
                 sameSite: 'strict',
-                secure: process.env.NODE_ENV === 'production',
+                secure: true,
             });
             resp.send(user);
             return resp;
@@ -70,7 +70,7 @@ let AuthController = class AuthController {
     }
 };
 __decorate([
-    (0, common_1.Post)('signup'),
+    (0, common_1.Post)('register'),
     (0, common_1.HttpCode)(common_1.HttpStatus.CREATED),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.Res)()),

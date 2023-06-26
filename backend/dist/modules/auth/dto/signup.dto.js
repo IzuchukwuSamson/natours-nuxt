@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Signup = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const class_validator_1 = require("class-validator");
 const userAlreadyExists_1 = require("../../user/userAlreadyExists");
 class Signup {
@@ -17,13 +18,25 @@ class Signup {
 __decorate([
     (0, class_validator_1.IsDefined)(),
     (0, class_validator_1.IsEmail)(),
+    (0, swagger_1.ApiProperty)(),
     (0, class_validator_1.Validate)(userAlreadyExists_1.UserAlreadyExists),
     __metadata("design:type", String)
 ], Signup.prototype, "email", void 0);
 __decorate([
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], Signup.prototype, "firstname", void 0);
+__decorate([
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsOptional)(),
+    __metadata("design:type", String)
+], Signup.prototype, "lastname", void 0);
+__decorate([
     (0, class_validator_1.IsDefined)(),
     (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.MinLength)(8),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], Signup.prototype, "password", void 0);
 exports.Signup = Signup;

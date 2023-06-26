@@ -1,7 +1,8 @@
 import { Role } from 'src/common/enum/role.enum';
 export declare class User {
     id: number;
-    name: string;
+    firstname: string;
+    lastname: string;
     email: string;
     password: string;
     role: Role;

@@ -9,29 +9,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserDto = void 0;
-const class_transformer_1 = require("class-transformer");
-class UserDto {
+exports.UpdateUserRoleDto = void 0;
+const class_validator_1 = require("class-validator");
+const swagger_1 = require("@nestjs/swagger");
+const role_enum_1 = require("../../../common/enum/role.enum");
+class UpdateUserRoleDto {
 }
 __decorate([
-    (0, class_transformer_1.Expose)(),
-    __metadata("design:type", Number)
-], UserDto.prototype, "id", void 0);
-__decorate([
-    (0, class_transformer_1.Expose)(),
+    (0, swagger_1.ApiProperty)(),
+    (0, class_validator_1.IsNotEmpty)(),
+    (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
-], UserDto.prototype, "email", void 0);
+], UpdateUserRoleDto.prototype, "email", void 0);
 __decorate([
-    (0, class_transformer_1.Expose)(),
+    (0, swagger_1.ApiProperty)({ enum: ['admin', 'user'] }),
+    (0, class_validator_1.IsEnum)(role_enum_1.Role),
     __metadata("design:type", String)
-], UserDto.prototype, "firstname", void 0);
-__decorate([
-    (0, class_transformer_1.Expose)(),
-    __metadata("design:type", String)
-], UserDto.prototype, "lastname", void 0);
-__decorate([
-    (0, class_transformer_1.Exclude)(),
-    __metadata("design:type", String)
-], UserDto.prototype, "password", void 0);
-exports.UserDto = UserDto;
-//# sourceMappingURL=user.dto.js.map
+], UpdateUserRoleDto.prototype, "role", void 0);
+exports.UpdateUserRoleDto = UpdateUserRoleDto;
+//# sourceMappingURL=update-user-role.dto.js.map

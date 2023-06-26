@@ -19,7 +19,7 @@ let User = class User {
         Object.assign(this, data);
     }
     async setPassword(password) {
-        const salt = await await bcrypt.genSalt();
+        const salt = await bcrypt.genSalt();
         this.password = await bcrypt.hash(password || this.password, salt);
     }
     async checkPassword(plainPassword) {
@@ -36,7 +36,11 @@ __decorate([
 __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
-], User.prototype, "name", void 0);
+], User.prototype, "firstname", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], User.prototype, "lastname", void 0);
 __decorate([
     (0, typeorm_1.Column)({ unique: true }),
     __metadata("design:type", String)
