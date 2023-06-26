@@ -4,9 +4,9 @@ import { UpdateTourDto } from './dto/update-tour.dto';
 export declare class TourController {
     private readonly tourService;
     constructor(tourService: TourService);
-    create(createTourDto: CreateTourDto): string;
-    findAll(): string;
-    findOne(id: string): string;
-    update(id: string, updateTourDto: UpdateTourDto): string;
-    remove(id: string): string;
+    create(createTourDto: CreateTourDto): import("./entities/tour.entity").Tour;
+    findAll(): Promise<import("./entities/tour.entity").Tour[]>;
+    findOne(id: string): Promise<import("./entities/tour.entity").Tour>;
+    update(id: string, updateTourDto: UpdateTourDto): Promise<import("./entities/tour.entity").Tour>;
+    remove(id: string): Promise<import("./entities/tour.entity").Tour>;
 }

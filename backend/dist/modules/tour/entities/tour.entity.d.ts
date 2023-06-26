@@ -1,4 +1,3 @@
-import { User } from 'src/modules/user/entities/user.entity';
 export declare class Tour {
     id: number;
     slug: string;
@@ -15,7 +14,6 @@ export declare class Tour {
     startDates: Date;
     startLocation: string;
     locations: string;
-    guide: User[];
     createdAt: Date;
     updatedAt: Date;
     generateSlug(): void;

@@ -9,61 +9,61 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateTourDto = void 0;
-const class_validator_1 = require("class-validator");
-class CreateTourDto {
+exports.TourDto = void 0;
+const class_transformer_1 = require("class-transformer");
+class TourDto {
 }
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], CreateTourDto.prototype, "name", void 0);
+], TourDto.prototype, "name", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
-], CreateTourDto.prototype, "duration", void 0);
+], TourDto.prototype, "duration", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], CreateTourDto.prototype, "difficulty", void 0);
+], TourDto.prototype, "difficulty", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
-], CreateTourDto.prototype, "ratingsAverage", void 0);
+], TourDto.prototype, "ratingsAverage", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
-], CreateTourDto.prototype, "ratingsQuantity", void 0);
+], TourDto.prototype, "ratingsQuantity", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
-], CreateTourDto.prototype, "price", void 0);
+], TourDto.prototype, "price", void 0);
 __decorate([
-    (0, class_validator_1.IsNumber)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", Number)
-], CreateTourDto.prototype, "priceDiscount", void 0);
+], TourDto.prototype, "priceDiscount", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], CreateTourDto.prototype, "summary", void 0);
+], TourDto.prototype, "summary", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], CreateTourDto.prototype, "description", void 0);
+], TourDto.prototype, "description", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], CreateTourDto.prototype, "imageCover", void 0);
+], TourDto.prototype, "imageCover", void 0);
 __decorate([
-    (0, class_validator_1.IsDate)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", Date)
-], CreateTourDto.prototype, "startDates", void 0);
+], TourDto.prototype, "startDates", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], CreateTourDto.prototype, "startLocation", void 0);
+], TourDto.prototype, "startLocation", void 0);
 __decorate([
-    (0, class_validator_1.IsString)(),
+    (0, class_transformer_1.Expose)(),
     __metadata("design:type", String)
-], CreateTourDto.prototype, "locations", void 0);
-exports.CreateTourDto = CreateTourDto;
-//# sourceMappingURL=create-tour.dto.js.map
+], TourDto.prototype, "locations", void 0);
+exports.TourDto = TourDto;
+//# sourceMappingURL=tour.dto.js.map

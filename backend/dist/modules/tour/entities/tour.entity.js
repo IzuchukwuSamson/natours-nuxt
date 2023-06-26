@@ -12,7 +12,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Tour = void 0;
 const typeorm_1 = require("typeorm");
 const slugify_1 = require("slugify");
-const user_entity_1 = require("../../user/entities/user.entity");
 let Tour = class Tour {
     generateSlug() {
         this.slug = (0, slugify_1.default)(`${this.name}`, { lower: true });
@@ -87,10 +86,6 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Tour.prototype, "locations", void 0);
-__decorate([
-    (0, typeorm_1.OneToMany)(() => user_entity_1.User, (users) => users.role),
-    __metadata("design:type", Array)
-], Tour.prototype, "guide", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

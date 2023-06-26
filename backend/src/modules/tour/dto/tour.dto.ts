@@ -1,42 +1,42 @@
-import { IsDate, IsNumber, IsString } from 'class-validator';
+import { Expose } from 'class-transformer';
 
-export class CreateTourDto {
-  @IsString()
+export class TourDto {
+  @Expose()
   name: string;
 
-  @IsNumber()
+  @Expose()
   duration: number;
 
-  @IsString()
+  @Expose()
   difficulty: string;
 
-  @IsNumber()
+  @Expose()
   ratingsAverage: number;
 
-  @IsNumber()
+  @Expose()
   ratingsQuantity: number;
 
-  @IsNumber()
+  @Expose()
   price: number;
 
-  @IsNumber()
+  @Expose()
   priceDiscount: number;
 
-  @IsString()
+  @Expose()
   summary: string;
 
-  @IsString()
+  @Expose()
   description: string;
 
-  @IsString()
+  @Expose()
   imageCover: string;
 
-  @IsDate()
+  @Expose()
   startDates: Date;
 
-  @IsString()
+  @Expose()
   startLocation: string;
 
-  @IsString()
+  @Expose()
   locations: string;
 }

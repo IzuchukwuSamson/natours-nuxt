@@ -62,8 +62,8 @@ export class Tour {
   @Column()
   locations: string;
 
-  @OneToMany(() => User, (users) => users.role)
-  guide: User[];
+  // @OneToMany(() => User, (users) => users.role)
+  // guide: User[];
 
   @CreateDateColumn()
   createdAt: Date;
