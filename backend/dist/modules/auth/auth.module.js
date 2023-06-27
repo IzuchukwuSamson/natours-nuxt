@@ -13,17 +13,17 @@ const auth_controller_1 = require("./auth.controller");
 const user_module_1 = require("../user/user.module");
 const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
-const bull_1 = require("@nestjs/bull");
 const local_strategy_1 = require("./strategies/local.strategy");
 const session_serializer_1 = require("./session.serializer");
 const jwt_strategy_1 = require("./strategies/jwt.strategy");
 const config_1 = require("@nestjs/config");
-const mail_constant_1 = require("../../mail/mail.constant");
+const mail_module_1 = require("../../mail/mail.module");
 let AuthModule = class AuthModule {
 };
 AuthModule = __decorate([
     (0, common_1.Module)({
         imports: [
+            mail_module_1.MailModule,
             user_module_1.UserModule,
             passport_1.PassportModule.register({ defaultStrategy: 'jwt', session: true }),
             jwt_1.JwtModule.registerAsync({
@@ -38,15 +38,9 @@ AuthModule = __decorate([
                     };
                 },
             }),
-            bull_1.BullModule.registerQueue({ name: mail_constant_1.EMAIL }),
         ],
         controllers: [auth_controller_1.AuthController],
-        providers: [
-            auth_service_1.AuthService,
-            local_strategy_1.LocalStrategy,
-            jwt_strategy_1.JwtStrategy,
-            session_serializer_1.SessionSerializer,
-        ],
+        providers: [auth_service_1.AuthService, local_strategy_1.LocalStrategy, jwt_strategy_1.JwtStrategy, session_serializer_1.SessionSerializer],
     })
 ], AuthModule);
 exports.AuthModule = AuthModule;

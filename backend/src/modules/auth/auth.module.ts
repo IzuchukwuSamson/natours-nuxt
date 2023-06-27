@@ -3,22 +3,18 @@ import { AuthService } from './auth.service';
 import { AuthController } from './auth.controller';
 import { UserModule } from '../user/user.module';
 import { PassportModule } from '@nestjs/passport';
-import { JwtModule, JwtService } from '@nestjs/jwt';
+import { JwtModule } from '@nestjs/jwt';
 import { BullModule } from '@nestjs/bull';
-import { UserService } from '../user/user.service';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from '../user/entities/user.entity';
 import { LocalStrategy } from './strategies/local.strategy';
 import { SessionSerializer } from './session.serializer';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { jwtConstants } from './guards/constants';
-import { EMAIL } from 'src/mail/mail.constant';
+import { MailModule } from 'src/mail/mail.module';
 
 @Module({
   imports: [
+    MailModule,
     UserModule,
-    // JwtModule,
     PassportModule.register({ defaultStrategy: 'jwt', session: true }),
     JwtModule.registerAsync({
       imports: [ConfigModule],
@@ -32,16 +28,10 @@ import { EMAIL } from 'src/mail/mail.constant';
         };
       },
     }),
-    BullModule.registerQueue({ name: EMAIL }),
+    // BullModule.registerQueue({ name: EMAIL }),
   ],
   controllers: [AuthController],
-  providers: [
-    AuthService,
-    // UserService,
-    LocalStrategy,
-    JwtStrategy,
-    SessionSerializer,
-  ],
+  providers: [AuthService, LocalStrategy, JwtStrategy, SessionSerializer],
 })
 export class AuthModule {}
 

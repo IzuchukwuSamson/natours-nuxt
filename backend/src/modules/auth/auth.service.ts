@@ -6,22 +6,23 @@ import { Signup } from './dto/signup.dto';
 import { UserService } from '../user/user.service';
 import { User } from '../user/entities/user.entity';
 import { JwtPayload } from './interfaces/jwt-payload.interface';
-import { EMAIL, WELCOME } from 'src/mail/mail.constant';
+import { MailService } from 'src/mail/mail.service';
+// import { EMAIL, WELCOME } from 'src/mail/mail.constant';
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
-    @InjectQueue(EMAIL)
-    private readonly emailQueue: Queue<Signup>,
+    private mailService: MailService,
   ) {}
 
   async register(newUser: Signup): Promise<User> {
+    const token = Math.floor(1000 + Math.random() * 9000).toString();
     const user = await this.userService.create(newUser);
 
     delete newUser.password;
-    await this.emailQueue.add(WELCOME, user);
+    await this.mailService.sendUserConfirmation(user, token);
     return user;
   }
 

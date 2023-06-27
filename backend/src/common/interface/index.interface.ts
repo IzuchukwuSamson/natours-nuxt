@@ -9,7 +9,7 @@ export interface IRegisterResponse {
   email: string;
   // firstName: string;
   // lastName: string;
-  // role: Role;
+  role: Role;
   // active: boolean;
   // message: string;
 }
