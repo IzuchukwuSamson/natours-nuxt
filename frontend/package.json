@@ -13,5 +13,9 @@
     "@types/node": "^18",
     "nuxt": "^3.6.0",
     "typescript": "latest"
+  },
+  "dependencies": {
+    "pug": "^3.0.2",
+    "unplugin-vue-components": "^0.25.1"
   }
 }
