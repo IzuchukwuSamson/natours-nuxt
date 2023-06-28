@@ -1,23 +1,39 @@
-<template>
-  <div class="footer">
-    <div class="footer__logo">
-      <img src="@/assets/img/logo-green.png" alt="Natours logo" />
-    </div>
-    <ul class="footer__nav">
-      <li><a href="#">About us</a></li>
-      <li><a href="#">Download apps</a></li>
-      <li><a href="#">Become a guide</a></li>
-      <li><a href="#">Careers</a></li>
-      <li><a href="#">Contact</a></li>
-    </ul>
-    <p class="footer__copyright">
-      &copy; by Jonas Schmedtmann. All rights reserved.
-    </p>
-  </div>
+<template lang="pug">
+div(class="footer")
+  div(class="footer__logo")
+    img(src="@/assets/img/logo-green.png" alt="Natours logo")
+  ul(class="footer__nav")
+    li(v-for="(list, index) in lists")
+      nuxt-link(to="#") {{ list.label }}
+    
+  p(class="footer__copyright") &copy; by Jonas Schmedtmann. All rights reserved.
 </template>
 
-<script>
-export default {};
+<script lang="ts">
+export default defineComponent({
+  setup() {
+    const lists = [
+      {
+        label: "About us",
+      },
+      {
+        label: "Download apps",
+      },
+      {
+        label: "Become a guide",
+      },
+      {
+        label: "Careers",
+      },
+      {
+        label: "Contact",
+      },
+    ];
+    return {
+      lists,
+    };
+  },
+});
 </script>
 
 <style lang="scss" scoped></style>

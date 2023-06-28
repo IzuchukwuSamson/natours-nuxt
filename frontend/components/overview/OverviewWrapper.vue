@@ -1,20 +1,11 @@
-<template>
-  <div>
-    <OverviewHeader />
-
-    <OverviewDescription />
-
-    <OverviewPictures />
-
-    <!-- Map -->
-    <!-- <OverviewMap /> -->
-
-    <!-- Reviews -->
-    <OverviewReviews />
-
-    <!-- Book TOur -->
-    <OverviewBookTour />
-  </div>
+<template lang="pug">
+div  
+  OverviewHeader
+  OverviewDescription
+  OverviewPictures 
+    //- OverviewMap
+  OverviewReviews 
+  OverviewBookTour
 </template>
 
 <script>
