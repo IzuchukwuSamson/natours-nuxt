@@ -10,13 +10,29 @@ exports.PaymentModule = void 0;
 const common_1 = require("@nestjs/common");
 const payment_controller_1 = require("./payment.controller");
 const payment_service_1 = require("./payment.service");
+const jwt_1 = require("@nestjs/jwt");
+const config_1 = require("@nestjs/config");
+const session_serializer_1 = require("../modules/auth/session.serializer");
 let PaymentModule = class PaymentModule {
 };
 PaymentModule = __decorate([
     (0, common_1.Module)({
-        imports: [],
+        imports: [
+            jwt_1.JwtModule.registerAsync({
+                imports: [config_1.ConfigModule],
+                inject: [config_1.ConfigService],
+                useFactory: (configService) => {
+                    return {
+                        secret: configService.get('JWT_SECRET'),
+                        signOptions: {
+                            expiresIn: configService.get('JWT_EXPIRES_IN'),
+                        },
+                    };
+                },
+            }),
+        ],
         controllers: [payment_controller_1.PaymentController],
-        providers: [payment_service_1.PaymentService],
+        providers: [payment_service_1.PaymentService, session_serializer_1.SessionSerializer],
     })
 ], PaymentModule);
 exports.PaymentModule = PaymentModule;

@@ -40,7 +40,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], PaymentController.prototype, "paymentSuccess", null);
 PaymentController = __decorate([
-    (0, common_1.Controller)('paystack'),
+    (0, common_1.Controller)('payment'),
     __metadata("design:paramtypes", [payment_service_1.PaymentService])
 ], PaymentController);
 exports.PaymentController = PaymentController;

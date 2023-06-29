@@ -8,19 +8,19 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymentService = void 0;
 const common_1 = require("@nestjs/common");
-const stripe = require('stripe')('sk_test_51M6xsMSGQlxq8EadTBFdHldKvFMwhpZSerARXb8qLIZW3AUQFBo6SyIgpkwy1g7NDDes6iNyU2XWG6yaDzjTVrxY00FKXNtQyx');
+const stripe = require('stripe')('sk_test_51MaQrRL3G1kDbS86JCWcD6NPiWfHOsyCym1mkzV5kIRkDdw6Qc85gX5O32K5JL8GhSzc5N36K8fNeOVsFpXzzip800niu8bEpy');
 let PaymentService = class PaymentService {
     async getSession() {
         const session = await stripe.checkout.sessions.create({
-            line_items: [{ price: 'price_1MIT3ZSGQlxq8EadT0j9QNMc', quantity: 3 }],
+            line_items: [{ price: 'price_1NOGrGL3G1kDbS86ZMpJjfqA', quantity: 3 }],
             mode: 'payment',
             payment_intent_data: {
                 setup_future_usage: 'on_session',
             },
-            customer: 'cus_N2YAmRC6YKWslj',
-            success_url: 'http://localhost:3000' +
-                '/pay/success/checkout/session?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url: 'http://localhost:3000' + '/pay/failed/checkout/session',
+            customer: 'cus_OAc7VHvnxCo4Ch',
+            success_url: 'http://localhost:8000' +
+                '/api/payment/pay/success/checkout/session?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url: 'http://localhost:8000' + '/api/payment/pay/failed/checkout/session',
         });
         return session;
     }
