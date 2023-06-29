@@ -1,8 +1,28 @@
 import { Injectable } from '@nestjs/common';
-import { InjectStripe } from 'nestjs-stripe';
-import Stripe from 'stripe';
+const stripe = require('stripe')(
+  'sk_test_51M6xsMSGQlxq8EadTBFdHldKvFMwhpZSerARXb8qLIZW3AUQFBo6SyIgpkwy1g7NDDes6iNyU2XWG6yaDzjTVrxY00FKXNtQyx',
+);
 
 @Injectable()
 export class PaymentService {
-  public constructor(@InjectStripe() private readonly stripeClient: Stripe) {}
+  async getSession() {
+    const session = await stripe.checkout.sessions.create({
+      line_items: [{ price: 'price_1MIT3ZSGQlxq8EadT0j9QNMc', quantity: 3 }],
+      mode: 'payment',
+      payment_intent_data: {
+        setup_future_usage: 'on_session',
+      },
+      customer: 'cus_N2YAmRC6YKWslj',
+      success_url:
+        'http://localhost:3000' +
+        '/pay/success/checkout/session?session_id={CHECKOUT_SESSION_ID}',
+      cancel_url: 'http://localhost:3000' + '/pay/failed/checkout/session',
+    });
+
+    return session;
+  }
+
+  async SuccessSession(Session: any) {
+    console.log(Session);
+  }
 }

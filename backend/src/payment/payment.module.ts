@@ -1,16 +1,10 @@
 import { Module } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { StripeModule } from 'nestjs-stripe';
+import { PaymentController } from './payment.controller';
+import { PaymentService } from './payment.service';
 
 @Module({
-  imports: [
-    StripeModule.forRootAsync({
-      inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        apiKey: configService.get('STRIPE_KEY'),
-        apiVersion: '2020-08-27',
-      }),
-    }),
-  ],
+  imports: [],
+  controllers: [PaymentController],
+  providers: [PaymentService],
 })
 export class PaymentModule {}
