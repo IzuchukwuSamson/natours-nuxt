@@ -13,6 +13,7 @@ import { Review } from './modules/review/entities/review.entity';
 import { BullModule } from '@nestjs/bull';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { MailModule } from './mail/mail.module';
+import { PaymentModule } from './payment/payment.module';
 // import bull from './config/bull.config';
 // import mail from './config/mail.config';
 
@@ -60,6 +61,7 @@ import { MailModule } from './mail/mail.module';
     AuthModule,
     ReviewModule,
     MailModule,
+    PaymentModule,
   ],
 })
 export class AppModule {}

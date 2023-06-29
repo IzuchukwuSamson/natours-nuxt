@@ -20,6 +20,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const tour_entity_1 = require("./modules/tour/entities/tour.entity");
 const review_entity_1 = require("./modules/review/entities/review.entity");
 const mail_module_1 = require("./mail/mail.module");
+const payment_module_1 = require("./payment/payment.module");
 let AppModule = class AppModule {
 };
 AppModule = __decorate([
@@ -52,6 +53,7 @@ AppModule = __decorate([
             auth_module_1.AuthModule,
             review_module_1.ReviewModule,
             mail_module_1.MailModule,
+            payment_module_1.PaymentModule,
         ],
     })
 ], AppModule);
