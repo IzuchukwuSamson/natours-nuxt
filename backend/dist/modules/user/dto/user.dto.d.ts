@@ -4,4 +4,5 @@ export declare class UserDto {
     firstname: string;
     lastname: string;
     password: string;
+    emailVerified: boolean;
 }

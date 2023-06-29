@@ -1,6 +1,5 @@
 import * as bcrypt from 'bcrypt';
 import { Exclude } from 'class-transformer';
-import { IsString, IsNotEmpty, IsEnum } from 'class-validator';
 import { Role } from 'src/common/enum/role.enum';
 
 import {
@@ -15,7 +14,7 @@ import {
 
 @Entity()
 export class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
@@ -26,6 +25,9 @@ export class User {
 
   @Column({ unique: true })
   email: string;
+
+  @Column({ default: false })
+  emailVerified: boolean;
 
   @Column()
   @Exclude()

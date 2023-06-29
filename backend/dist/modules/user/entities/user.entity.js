@@ -30,7 +30,7 @@ let User = class User {
     }
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", Number)
 ], User.prototype, "id", void 0);
 __decorate([
@@ -45,6 +45,10 @@ __decorate([
     (0, typeorm_1.Column)({ unique: true }),
     __metadata("design:type", String)
 ], User.prototype, "email", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ default: false }),
+    __metadata("design:type", Boolean)
+], User.prototype, "emailVerified", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
     (0, class_transformer_1.Exclude)(),

@@ -15,4 +15,7 @@ export class UserDto {
 
   @Exclude()
   password: string;
+
+  @Expose()
+  emailVerified: boolean;
 }

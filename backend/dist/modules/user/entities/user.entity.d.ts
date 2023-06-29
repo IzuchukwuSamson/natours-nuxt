@@ -4,6 +4,7 @@ export declare class User {
     firstname: string;
     lastname: string;
     email: string;
+    emailVerified: boolean;
     password: string;
     role: Role;
     createdAt: Date;
