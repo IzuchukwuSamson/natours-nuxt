@@ -1,5 +1,4 @@
-import Stripe from 'stripe';
 export declare class PaymentService {
-    private readonly stripeClient;
-    constructor(stripeClient: Stripe);
+    getSession(): Promise<any>;
+    SuccessSession(Session: any): Promise<void>;
 }

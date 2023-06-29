@@ -14,17 +14,34 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymentController = void 0;
 const common_1 = require("@nestjs/common");
-const nestjs_stripe_1 = require("nestjs-stripe");
-const stripe_1 = require("stripe");
+const payment_service_1 = require("./payment.service");
 let PaymentController = class PaymentController {
-    constructor(stripeClient) {
-        this.stripeClient = stripeClient;
+    constructor(paymentService) {
+        this.paymentService = paymentService;
+    }
+    getHello() {
+        return this.paymentService.getSession();
+    }
+    paymentSuccess(res) {
+        return this.paymentService.SuccessSession(res);
     }
 };
+__decorate([
+    (0, common_1.Get)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], PaymentController.prototype, "getHello", null);
+__decorate([
+    (0, common_1.Get)('pay/success/checkout/session'),
+    __param(0, (0, common_1.Res)({ passthrough: true })),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], PaymentController.prototype, "paymentSuccess", null);
 PaymentController = __decorate([
     (0, common_1.Controller)('paystack'),
-    __param(0, (0, nestjs_stripe_1.InjectStripe)()),
-    __metadata("design:paramtypes", [stripe_1.default])
+    __metadata("design:paramtypes", [payment_service_1.PaymentService])
 ], PaymentController);
 exports.PaymentController = PaymentController;
 //# sourceMappingURL=payment.controller.js.map

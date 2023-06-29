@@ -1,12 +1,9 @@
-import { Body, Get, Res, Controller, Post } from '@nestjs/common';
-import { InjectStripe } from 'nestjs-stripe';
+import { Get, Res, Controller } from '@nestjs/common';
 import { PaymentService } from './payment.service';
 
 @Controller('paystack')
 export class PaymentController {
-  constructor(
-    @InjectStripe() private readonly paymentService: PaymentService,
-  ) {}
+  constructor(private readonly paymentService: PaymentService) {}
 
   @Get()
   getHello() {

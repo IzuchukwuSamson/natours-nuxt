@@ -5,26 +5,31 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-var __param = (this && this.__param) || function (paramIndex, decorator) {
-    return function (target, key) { decorator(target, key, paramIndex); }
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymentService = void 0;
 const common_1 = require("@nestjs/common");
-const nestjs_stripe_1 = require("nestjs-stripe");
-const stripe_1 = require("stripe");
+const stripe = require('stripe')('sk_test_51M6xsMSGQlxq8EadTBFdHldKvFMwhpZSerARXb8qLIZW3AUQFBo6SyIgpkwy1g7NDDes6iNyU2XWG6yaDzjTVrxY00FKXNtQyx');
 let PaymentService = class PaymentService {
-    constructor(stripeClient) {
-        this.stripeClient = stripeClient;
+    async getSession() {
+        const session = await stripe.checkout.sessions.create({
+            line_items: [{ price: 'price_1MIT3ZSGQlxq8EadT0j9QNMc', quantity: 3 }],
+            mode: 'payment',
+            payment_intent_data: {
+                setup_future_usage: 'on_session',
+            },
+            customer: 'cus_N2YAmRC6YKWslj',
+            success_url: 'http://localhost:3000' +
+                '/pay/success/checkout/session?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url: 'http://localhost:3000' + '/pay/failed/checkout/session',
+        });
+        return session;
+    }
+    async SuccessSession(Session) {
+        console.log(Session);
     }
 };
 PaymentService = __decorate([
-    (0, common_1.Injectable)(),
-    __param(0, (0, nestjs_stripe_1.InjectStripe)()),
-    __metadata("design:paramtypes", [stripe_1.default])
+    (0, common_1.Injectable)()
 ], PaymentService);
 exports.PaymentService = PaymentService;
 //# sourceMappingURL=payment.service.js.map

@@ -8,21 +8,15 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymentModule = void 0;
 const common_1 = require("@nestjs/common");
-const config_1 = require("@nestjs/config");
-const nestjs_stripe_1 = require("nestjs-stripe");
+const payment_controller_1 = require("./payment.controller");
+const payment_service_1 = require("./payment.service");
 let PaymentModule = class PaymentModule {
 };
 PaymentModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            nestjs_stripe_1.StripeModule.forRootAsync({
-                inject: [config_1.ConfigService],
-                useFactory: (configService) => ({
-                    apiKey: configService.get('STRIPE_KEY'),
-                    apiVersion: '2020-08-27',
-                }),
-            }),
-        ],
+        imports: [],
+        controllers: [payment_controller_1.PaymentController],
+        providers: [payment_service_1.PaymentService],
     })
 ], PaymentModule);
 exports.PaymentModule = PaymentModule;

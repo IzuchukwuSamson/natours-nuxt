@@ -46,7 +46,6 @@
     "is-what": "^4.1.15",
     "multer": "^1.4.5-lts.1",
     "mysql2": "^3.4.1",
-    "nestjs-stripe": "^1.0.0",
     "nodemailer": "^6.9.3",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.1",
@@ -57,6 +56,7 @@
     "rxjs": "^7.2.0",
     "sharp": "^0.32.1",
     "slugify": "^1.6.6",
+    "stripe": "^12.10.0",
     "typeorm": "^0.3.17"
   },
   "devDependencies": {
