@@ -20,8 +20,8 @@ let MailService = class MailService {
         const url = `example.com/auth/confirm?token=${token}`;
         await this.mailerService.sendMail({
             to: user.email,
-            from: '"Support Team" <support@example.com>',
-            subject: 'Welcome to Nice App! Confirm your Email',
+            from: '"Support Team" <support@natours.io>',
+            subject: 'Welcome to Natours - Confirm your Email',
             template: './confirmation',
             context: {
                 name: user.firstname,
