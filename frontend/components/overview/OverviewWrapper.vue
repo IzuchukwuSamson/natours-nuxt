@@ -5,7 +5,7 @@ div
   OverviewPictures 
     //- OverviewMap
   OverviewReviews 
-  OverviewBookTour
+  OverviewBooktour
 </template>
 
 <script>

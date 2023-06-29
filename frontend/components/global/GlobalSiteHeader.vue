@@ -10,13 +10,13 @@ header(class="header")
       input(type="text" placeholder="Search tours" class="nav__search-input")
   div(class="header__logo")
     img(src="@/assets/img/logo-white.png" alt="Natours logo")
-  nav(class="nav nav--user") My bookings
-    nuxt-link(to="#" class="nav__el")
+  nav(class="nav nav--user") 
+    nuxt-link(to="#" class="nav__el") My bookings
     nuxt-link(to="#" class="nav__el")
       img(src="@/assets/img/users/default.jpg" alt="User photo" class="nav__user-img")
       span Jonas
-    //- button(class="nav__el") Log in
-    //- button(class="nav__el nav__el--cta") Sign up
+    nuxt-link(to="login" class="nav__el") Log in
+    nuxt-link(to="signup" class="nav__el nav__el--cta") Sign up
 </template>
 
 <script lang="">
