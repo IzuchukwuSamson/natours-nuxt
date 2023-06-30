@@ -8,7 +8,6 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  BeforeInsert,
   AfterInsert,
 } from 'typeorm';
 
@@ -48,12 +47,6 @@ export class User {
   constructor(data: Partial<User> = {}) {
     Object.assign(this, data);
   }
-
-  // @BeforeInsert()
-  // async setPassword(password: string) {
-  //   const salt = await bcrypt.genSalt();
-  //   this.password = await bcrypt.hash(password || this.password, salt);
-  // }
 
   async checkPassword(plainPassword: string) {
     return await bcrypt.compare(plainPassword, this.password);

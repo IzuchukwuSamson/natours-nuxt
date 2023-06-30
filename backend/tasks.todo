@@ -1,4 +1,6 @@
 Check the authentication guard
 Verify email with token
-google authentication for login and signup
 Signout
+
+///DO THIS ONE FIRST
+Use env variables for the payment and google auth
