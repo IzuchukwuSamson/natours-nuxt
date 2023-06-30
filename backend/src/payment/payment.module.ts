@@ -3,7 +3,7 @@ import { PaymentController } from './payment.controller';
 import { PaymentService } from './payment.service';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { SessionSerializer } from 'src/modules/auth/session.serializer';
+import { SessionSerializer } from 'src/modules/auth/serialize/session.serializer';
 
 @Module({
   imports: [

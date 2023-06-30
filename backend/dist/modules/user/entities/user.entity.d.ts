@@ -6,11 +6,11 @@ export declare class User {
     email: string;
     emailVerified: boolean;
     password: string;
+    image: string;
     role: Role;
     createdAt: Date;
     updatedAt: Date;
     constructor(data?: Partial<User>);
-    setPassword(password: string): Promise<void>;
     checkPassword(plainPassword: string): Promise<boolean>;
     logInsert(): void;
 }

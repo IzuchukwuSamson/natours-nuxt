@@ -6,13 +6,18 @@ import { PassportModule } from '@nestjs/passport';
 import { JwtModule } from '@nestjs/jwt';
 import { BullModule } from '@nestjs/bull';
 import { LocalStrategy } from './strategies/local.strategy';
-import { SessionSerializer } from './session.serializer';
+import { SessionSerializer } from './serialize/session.serializer';
 import { JwtStrategy } from './strategies/jwt.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MailModule } from 'src/mail/mail.module';
+import { GoogleStrategy } from './strategies/GoogleStrategy';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { User } from '../user/entities/user.entity';
+import { GoogleSessionSerializer } from './serialize/google.session.serializer';
 
 @Module({
   imports: [
+    TypeOrmModule.forFeature([User]),
     MailModule,
     UserModule,
     PassportModule.register({ defaultStrategy: 'jwt', session: true }),
@@ -31,7 +36,18 @@ import { MailModule } from 'src/mail/mail.module';
     // BullModule.registerQueue({ name: EMAIL }),
   ],
   controllers: [AuthController],
-  providers: [AuthService, LocalStrategy, JwtStrategy, SessionSerializer],
+  providers: [
+    AuthService,
+    LocalStrategy,
+    JwtStrategy,
+    SessionSerializer,
+    GoogleSessionSerializer,
+    GoogleStrategy,
+    {
+      provide: 'AUTH_SERVICE',
+      useClass: AuthService,
+    },
+  ],
 })
 export class AuthModule {}
 

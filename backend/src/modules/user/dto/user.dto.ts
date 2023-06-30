@@ -18,4 +18,7 @@ export class UserDto {
 
   @Expose()
   emailVerified: boolean;
+
+  @Expose()
+  image: string;
 }

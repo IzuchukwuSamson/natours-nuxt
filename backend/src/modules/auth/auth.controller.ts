@@ -8,6 +8,7 @@ import {
   HttpCode,
   HttpStatus,
   Res,
+  Req,
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { Signup } from './dto/signup.dto';
@@ -18,6 +19,7 @@ import { Login } from './dto/login.dto';
 import { User } from '../user/entities/user.entity';
 import { LocalAuthGuard } from './guards/local-auth.guard copy';
 import { JWTAuthGuard } from './guards/jwt-guard.guard';
+import { GoogleAuthGuard } from './guards/google.guard';
 
 @Controller('auth')
 export class AuthController {
@@ -80,4 +82,28 @@ export class AuthController {
   logout(@Session() session: any) {
     session.userId = null;
   }
+
+  // GOOGLE AUTH
+  @Get('/google/login')
+  @UseGuards(GoogleAuthGuard)
+  handleLogin() {
+    return { msg: 'Google Authentication' };
+  }
+
+  // api/auth/google/redirect
+  @Get('google/redirect')
+  @UseGuards(GoogleAuthGuard)
+  handleRedirect() {
+    return { msg: 'OK' };
+  }
+
+  // @Get('status')
+  // user(@Req() request: Request) {
+  //   console.log(request.user);
+  //   if (request.user) {
+  //     return { msg: 'Authenticated' };
+  //   } else {
+  //     return { msg: 'Not Authenticated' };
+  //   }
+  // }
 }

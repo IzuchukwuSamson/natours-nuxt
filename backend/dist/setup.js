@@ -5,6 +5,7 @@ const common_1 = require("@nestjs/common");
 const class_validator_1 = require("class-validator");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
+const passport = require("passport");
 const MySQLStore = require("express-mysql-session");
 const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
@@ -42,7 +43,7 @@ function setup(app) {
         database: process.env.DB_DATABASE,
     };
     app.use(session({
-        secret: process.env.APP_SECRET,
+        secret: process.env.JWT_SECRET,
         resave: false,
         saveUninitialized: false,
         store: process.env.NODE_ENV === 'production'
@@ -56,6 +57,8 @@ function setup(app) {
             secure: process.env.NODE_ENV === 'production',
         },
     }));
+    app.use(passport.initialize());
+    app.use(passport.session());
     (0, class_validator_1.useContainer)(app.select(app_module_1.AppModule), { fallbackOnErrors: true });
     return app;
 }

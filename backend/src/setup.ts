@@ -63,7 +63,7 @@ export function setup(app: INestApplication): INestApplication {
 
   app.use(
     session({
-      secret: process.env.APP_SECRET as string,
+      secret: process.env.JWT_SECRET as string,
       resave: false,
       saveUninitialized: false,
       store:
@@ -79,6 +79,10 @@ export function setup(app: INestApplication): INestApplication {
       },
     }),
   );
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
   return app;

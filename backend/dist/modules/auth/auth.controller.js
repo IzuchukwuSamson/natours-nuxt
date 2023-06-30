@@ -22,6 +22,7 @@ const login_dto_1 = require("./dto/login.dto");
 const user_entity_1 = require("../user/entities/user.entity");
 const local_auth_guard_copy_1 = require("./guards/local-auth.guard copy");
 const jwt_guard_guard_1 = require("./guards/jwt-guard.guard");
+const google_guard_1 = require("./guards/google.guard");
 let AuthController = class AuthController {
     constructor(authService) {
         this.authService = authService;
@@ -68,6 +69,12 @@ let AuthController = class AuthController {
     logout(session) {
         session.userId = null;
     }
+    handleLogin() {
+        return { msg: 'Google Authentication' };
+    }
+    handleRedirect() {
+        return { msg: 'OK' };
+    }
 };
 __decorate([
     (0, common_1.Post)('register'),
@@ -104,6 +111,20 @@ __decorate([
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", void 0)
 ], AuthController.prototype, "logout", null);
+__decorate([
+    (0, common_1.Get)('/google/login'),
+    (0, common_1.UseGuards)(google_guard_1.GoogleAuthGuard),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "handleLogin", null);
+__decorate([
+    (0, common_1.Get)('google/redirect'),
+    (0, common_1.UseGuards)(google_guard_1.GoogleAuthGuard),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], AuthController.prototype, "handleRedirect", null);
 AuthController = __decorate([
     (0, common_1.Controller)('auth'),
     __metadata("design:paramtypes", [auth_service_1.AuthService])

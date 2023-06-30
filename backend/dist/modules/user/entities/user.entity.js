@@ -18,10 +18,6 @@ let User = class User {
     constructor(data = {}) {
         Object.assign(this, data);
     }
-    async setPassword(password) {
-        const salt = await bcrypt.genSalt();
-        this.password = await bcrypt.hash(password || this.password, salt);
-    }
     async checkPassword(plainPassword) {
         return await bcrypt.compare(plainPassword, this.password);
     }
@@ -55,6 +51,10 @@ __decorate([
     __metadata("design:type", String)
 ], User.prototype, "password", void 0);
 __decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], User.prototype, "image", void 0);
+__decorate([
     (0, typeorm_1.Column)({ default: role_enum_1.Role.USER }),
     __metadata("design:type", String)
 ], User.prototype, "role", void 0);
@@ -66,12 +66,6 @@ __decorate([
     (0, typeorm_1.UpdateDateColumn)(),
     __metadata("design:type", Date)
 ], User.prototype, "updatedAt", void 0);
-__decorate([
-    (0, typeorm_1.BeforeInsert)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", Promise)
-], User.prototype, "setPassword", null);
 __decorate([
     (0, typeorm_1.AfterInsert)(),
     __metadata("design:type", Function),

@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("./entities/user.entity");
 const typeorm_2 = require("typeorm");
+const utils_1 = require("../../common/utils.");
 let UserService = class UserService {
     constructor(repo) {
         this.repo = repo;
@@ -24,9 +25,11 @@ let UserService = class UserService {
     find(email) {
         return this.repo.find({ where: { email } });
     }
-    async create(data) {
-        const user = await this.repo.save(new user_entity_1.User(data));
-        return user;
+    async create(createUserDto) {
+        const hashedPassword = await (0, utils_1.hashPassword)(createUserDto.password);
+        const user = Object.assign(Object.assign({}, createUserDto), { password: hashedPassword });
+        const createdUser = await this.repo.save(this.repo.create(user));
+        return createdUser;
     }
     async findAll() {
         const users = await this.repo.find();

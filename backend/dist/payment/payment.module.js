@@ -12,7 +12,7 @@ const payment_controller_1 = require("./payment.controller");
 const payment_service_1 = require("./payment.service");
 const jwt_1 = require("@nestjs/jwt");
 const config_1 = require("@nestjs/config");
-const session_serializer_1 = require("../modules/auth/session.serializer");
+const session_serializer_1 = require("../modules/auth/serialize/session.serializer");
 let PaymentModule = class PaymentModule {
 };
 PaymentModule = __decorate([

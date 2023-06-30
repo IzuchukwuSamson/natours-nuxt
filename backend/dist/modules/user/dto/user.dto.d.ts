@@ -5,4 +5,5 @@ export declare class UserDto {
     lastname: string;
     password: string;
     emailVerified: boolean;
+    image: string;
 }

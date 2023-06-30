@@ -10,4 +10,10 @@ export declare class AuthController {
     login(login: Login, resp: Response): Promise<Response<any, Record<string, any>>>;
     me(user: User): User;
     logout(session: any): void;
+    handleLogin(): {
+        msg: string;
+    };
+    handleRedirect(): {
+        msg: string;
+    };
 }
