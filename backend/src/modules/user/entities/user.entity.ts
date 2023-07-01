@@ -28,6 +28,9 @@ export class User {
   @Column({ default: false })
   emailVerified: boolean;
 
+  @Column({ select: false, nullable: true })
+  authConfirmToken: String;
+
   @Column()
   @Exclude()
   password: string;
