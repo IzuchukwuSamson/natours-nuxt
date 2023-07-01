@@ -12,19 +12,19 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.PaymentService = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
-const stripe = require('stripe')(process.env.PAYMENT_ID);
+const stripe = require('stripe')('sk_test_51MaQrRL3G1kDbS86JCWcD6NPiWfHOsyCym1mkzV5kIRkDdw6Qc85gX5O32K5JL8GhSzc5N36K8fNeOVsFpXzzip800niu8bEpy');
 let PaymentService = class PaymentService {
     constructor(configService) {
         this.configService = configService;
     }
     async getSession() {
         const session = await stripe.checkout.sessions.create({
-            line_items: [{ price: process.env.PAYMENT_PRICE, quantity: 3 }],
+            line_items: [{ price: 'price_1NOGrGL3G1kDbS86ZMpJjfqA', quantity: 3 }],
             mode: 'payment',
             payment_intent_data: {
                 setup_future_usage: 'on_session',
             },
-            customer: process.env.PAYMENT_CUSTOMER,
+            customer: 'cus_OAc7VHvnxCo4Ch',
             success_url: 'http://localhost:8000' +
                 '/api/payment/pay/success/checkout/session?session_id={CHECKOUT_SESSION_ID}',
             cancel_url: 'http://localhost:8000' + '/api/payment/pay/failed/checkout/session',

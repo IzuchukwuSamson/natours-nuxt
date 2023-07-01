@@ -5,6 +5,7 @@ export declare class User {
     lastname: string;
     email: string;
     emailVerified: boolean;
+    authConfirmToken: String;
     password: string;
     image: string;
     role: Role;

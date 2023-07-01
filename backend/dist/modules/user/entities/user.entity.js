@@ -46,6 +46,10 @@ __decorate([
     __metadata("design:type", Boolean)
 ], User.prototype, "emailVerified", void 0);
 __decorate([
+    (0, typeorm_1.Column)({ select: false, nullable: true }),
+    __metadata("design:type", String)
+], User.prototype, "authConfirmToken", void 0);
+__decorate([
     (0, typeorm_1.Column)(),
     (0, class_transformer_1.Exclude)(),
     __metadata("design:type", String)
