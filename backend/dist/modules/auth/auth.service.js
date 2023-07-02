@@ -26,12 +26,19 @@ let AuthService = class AuthService {
         this.userService = userService;
         this.jwtService = jwtService;
         this.mailService = mailService;
+        this.code = Math.floor(1000 + Math.random() * 90000).toString();
     }
     async register(newUser) {
-        const token = Math.floor(1000 + Math.random() * 9000).toString();
-        const user = await this.userService.create(newUser);
+        const req = {
+            firstname: newUser.firstname,
+            lastname: newUser.lastname,
+            email: newUser.email,
+            password: newUser.password,
+            authConfirmToken: this.code,
+        };
+        const user = await this.userService.create(req);
         delete newUser.password;
-        await this.mailService.sendUserConfirmation(user, token);
+        await this.mailService.sendUserConfirmation(user);
         return user;
     }
     async login(email, password) {
@@ -64,6 +71,19 @@ let AuthService = class AuthService {
             sub: user.email,
         };
         return this.jwtService.sign(payload);
+    }
+    async verifyAccount(code) {
+        const user = await this.repo.findOne({
+            where: { authConfirmToken: this.code },
+        });
+        if (!user) {
+            throw new common_1.NotFoundException('Invalid Token');
+        }
+        else {
+            await this.repo.update({ authConfirmToken: user.authConfirmToken }, { emailVerified: true, authConfirmToken: undefined });
+        }
+        await this.mailService.confirmed(user);
+        return user;
     }
     async signinwithgoogle(details) {
         console.log('AuthService');

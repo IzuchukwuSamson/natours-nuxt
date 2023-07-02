@@ -72,6 +72,13 @@ export class AuthController {
     }
   }
 
+  @Get('confirm?token')
+  async verifiedAccount(@Body() body) {
+    const verified = await this.authService.verifyAccount(body);
+
+    return verified;
+  }
+
   @Get('me')
   @UseGuards(SessionAuthGuard, JWTAuthGuard)
   me(@CurrentUser() user: User) {

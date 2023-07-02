@@ -8,6 +8,7 @@ export declare class AuthController {
     constructor(authService: AuthService);
     signup(signup: Signup, resp: Response): Promise<Response<any, Record<string, any>>>;
     login(login: Login, resp: Response): Promise<Response<any, Record<string, any>>>;
+    verifiedAccount(body: any): Promise<any>;
     me(user: User): User;
     logout(session: any): void;
     handleLogin(): {

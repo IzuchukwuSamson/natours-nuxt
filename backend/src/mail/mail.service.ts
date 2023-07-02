@@ -6,8 +6,8 @@ import { User } from 'src/modules/user/entities/user.entity';
 export class MailService {
   constructor(private mailerService: MailerService) {}
 
-  async sendUserConfirmation(user: User, token: string) {
-    const url = `example.com/auth/confirm?token=${token}`;
+  async sendUserConfirmation(user: User) {
+    const url = `localhost:8000/api/auth/confirm?token=${user.authConfirmToken}`;
 
     await this.mailerService.sendMail({
       to: user.email,
@@ -15,8 +15,22 @@ export class MailService {
       subject: 'Welcome to Natours - Confirm your Email',
       template: './confirmation',
       context: {
-        name: user.firstname,
+        name: `${user.firstname} ${user.lastname}`,
+        // url: user.authConfirmToken,
         url,
+      },
+    });
+  }
+
+  async confirmed(user: User) {
+    await this.mailerService.sendMail({
+      to: user.email,
+      from: '"Support Team" <support@natours.io>',
+      subject: 'Natours - Account Verified',
+      template: './confirmed',
+      context: {
+        name: `${user.firstname} ${user.lastname}`,
+        email: user.email,
       },
     });
   }

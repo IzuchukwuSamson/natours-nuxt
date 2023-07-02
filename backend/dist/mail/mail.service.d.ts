@@ -3,5 +3,6 @@ import { User } from 'src/modules/user/entities/user.entity';
 export declare class MailService {
     private mailerService;
     constructor(mailerService: MailerService);
-    sendUserConfirmation(user: User, token: string): Promise<void>;
+    sendUserConfirmation(user: User): Promise<void>;
+    confirmed(user: User): Promise<void>;
 }

@@ -11,11 +11,13 @@ export declare class AuthService {
     private readonly userService;
     private readonly jwtService;
     private mailService;
+    private code;
     constructor(repo: Repository<User>, userService: UserService, jwtService: JwtService, mailService: MailService);
     register(newUser: Signup): Promise<User>;
     login(email: string, password: string): Promise<User>;
     verifyPayload(payload: JwtPayload): Promise<User>;
     signToken(user: User): string;
+    verifyAccount(code: string): Promise<any>;
     signinwithgoogle(details: UserDetails): Promise<User>;
     findUser(id: number): Promise<User>;
 }

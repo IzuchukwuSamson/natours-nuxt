@@ -1,4 +1,10 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
@@ -14,19 +20,29 @@ import { Repository } from 'typeorm';
 
 @Injectable()
 export class AuthService {
+  private code: string;
   constructor(
     @InjectRepository(User) private readonly repo: Repository<User>,
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private mailService: MailService,
-  ) {}
+  ) {
+    this.code = Math.floor(1000 + Math.random() * 90000).toString();
+  }
 
   async register(newUser: Signup): Promise<User> {
-    const token = Math.floor(1000 + Math.random() * 9000).toString();
-    const user = await this.userService.create(newUser);
+    // const token = Math.floor(1000 + Math.random() * 90000).toString();
+    const req = {
+      firstname: newUser.firstname,
+      lastname: newUser.lastname,
+      email: newUser.email,
+      password: newUser.password,
+      authConfirmToken: this.code,
+    };
+    const user = await this.userService.create(req);
 
     delete newUser.password;
-    await this.mailService.sendUserConfirmation(user, token);
+    await this.mailService.sendUserConfirmation(user);
     return user;
   }
 
@@ -72,6 +88,23 @@ export class AuthService {
     };
 
     return this.jwtService.sign(payload);
+  }
+
+  async verifyAccount(code: string): Promise<any> {
+    const user = await this.repo.findOne({
+      where: { authConfirmToken: this.code },
+    });
+    if (!user) {
+      // return new HttpException('Invalid Token', HttpStatus.UNAUTHORIZED);
+      throw new NotFoundException('Invalid Token');
+    } else {
+      await this.repo.update(
+        { authConfirmToken: user.authConfirmToken },
+        { emailVerified: true, authConfirmToken: undefined },
+      );
+    }
+    await this.mailService.confirmed(user);
+    return user;
   }
 
   // SIGN WITH GOOGLE

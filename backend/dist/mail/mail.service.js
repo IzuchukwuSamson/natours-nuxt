@@ -16,16 +16,28 @@ let MailService = class MailService {
     constructor(mailerService) {
         this.mailerService = mailerService;
     }
-    async sendUserConfirmation(user, token) {
-        const url = `example.com/auth/confirm?token=${token}`;
+    async sendUserConfirmation(user) {
+        const url = `localhost:8000/api/auth/confirm?token=${user.authConfirmToken}`;
         await this.mailerService.sendMail({
             to: user.email,
             from: '"Support Team" <support@natours.io>',
             subject: 'Welcome to Natours - Confirm your Email',
             template: './confirmation',
             context: {
-                name: user.firstname,
+                name: `${user.firstname} ${user.lastname}`,
                 url,
+            },
+        });
+    }
+    async confirmed(user) {
+        await this.mailerService.sendMail({
+            to: user.email,
+            from: '"Support Team" <support@natours.io>',
+            subject: 'Natours - Account Verified',
+            template: './confirmed',
+            context: {
+                name: `${user.firstname} ${user.lastname}`,
+                email: user.email,
             },
         });
     }
