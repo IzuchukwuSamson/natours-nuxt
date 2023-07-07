@@ -47,7 +47,7 @@ __decorate([
 ], User.prototype, "emailVerified", void 0);
 __decorate([
     (0, typeorm_1.Column)({ select: false, nullable: true }),
-    __metadata("design:type", String)
+    __metadata("design:type", Number)
 ], User.prototype, "authConfirmToken", void 0);
 __decorate([
     (0, typeorm_1.Column)(),

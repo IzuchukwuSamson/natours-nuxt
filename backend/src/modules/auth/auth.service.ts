@@ -21,14 +21,15 @@ import { UpdateUserDto } from '../user/dto/update-user.dto';
 
 @Injectable()
 export class AuthService {
-  private code: string;
+  private code: number;
   constructor(
     @InjectRepository(User) private readonly repo: Repository<User>,
     private readonly userService: UserService,
     private readonly jwtService: JwtService,
     private mailService: MailService,
   ) {
-    this.code = Math.floor(1000 + Math.random() * 90000).toString();
+    this.code = Math.floor(1000 + Math.random() * 90000);
+    // this.code = Math.floor(1000 + Math.random() * 90000).toString
   }
 
   async register(newUser: Signup): Promise<User> {
@@ -91,7 +92,11 @@ export class AuthService {
     return this.jwtService.sign(payload);
   }
 
-  async verifyAccount(code: string, updateUser: UpdateUserDto): Promise<any> {
+  async verifyAccount(
+    code: string,
+    authConfirmToken: number,
+    updateUser: UpdateUserDto,
+  ): Promise<any> {
     try {
       const user = await this.repo.findOne({
         where: { authConfirmToken: this.code },

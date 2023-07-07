@@ -64,7 +64,7 @@ let AuthController = class AuthController {
         }
     }
     async Verify(body) {
-        return await this.authService.verifyAccount(body.code, body.updateUser);
+        return await this.authService.verifyAccount(body.code, body.authConfirmToken, body.updateUser);
     }
     me(user) {
         return user;

@@ -18,7 +18,7 @@ export declare class AuthService {
     login(email: string, password: string): Promise<User>;
     verifyPayload(payload: JwtPayload): Promise<User>;
     signToken(user: User): string;
-    verifyAccount(code: string, updateUser: UpdateUserDto): Promise<any>;
+    verifyAccount(code: string, authConfirmToken: number, updateUser: UpdateUserDto): Promise<any>;
     signinwithgoogle(details: UserDetails): Promise<User>;
     findUser(id: number): Promise<User>;
 }

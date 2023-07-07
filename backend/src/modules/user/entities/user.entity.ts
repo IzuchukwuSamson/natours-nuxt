@@ -29,7 +29,7 @@ export class User {
   emailVerified: boolean;
 
   @Column({ select: false, nullable: true })
-  authConfirmToken: string;
+  authConfirmToken: number;
 
   @Column()
   @Exclude()

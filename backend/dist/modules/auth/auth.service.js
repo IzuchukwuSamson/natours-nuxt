@@ -26,7 +26,7 @@ let AuthService = class AuthService {
         this.userService = userService;
         this.jwtService = jwtService;
         this.mailService = mailService;
-        this.code = Math.floor(1000 + Math.random() * 90000).toString();
+        this.code = Math.floor(1000 + Math.random() * 90000);
     }
     async register(newUser) {
         const req = {
@@ -72,7 +72,7 @@ let AuthService = class AuthService {
         };
         return this.jwtService.sign(payload);
     }
-    async verifyAccount(code, updateUser) {
+    async verifyAccount(code, authConfirmToken, updateUser) {
         try {
             const user = await this.repo.findOne({
                 where: { authConfirmToken: this.code },

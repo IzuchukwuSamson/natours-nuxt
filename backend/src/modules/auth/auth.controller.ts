@@ -81,7 +81,11 @@ export class AuthController {
 
   @Post('/verify')
   async Verify(@Body() body) {
-    return await this.authService.verifyAccount(body.code, body.updateUser);
+    return await this.authService.verifyAccount(
+      body.code,
+      body.authConfirmToken,
+      body.updateUser,
+    );
   }
 
   @Get('me')
