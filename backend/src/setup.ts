@@ -4,6 +4,7 @@ import * as cookieParser from 'cookie-parser';
 import * as session from 'express-session';
 import * as passport from 'passport';
 import * as MySQLStore from 'express-mysql-session';
+import { useNestTreblle } from 'treblle';
 
 import { AppModule } from './app.module';
 import {
@@ -84,6 +85,13 @@ export function setup(app: INestApplication): INestApplication {
   app.use(passport.session());
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
+
+  const expressInstance = app.getHttpAdapter().getInstance();
+
+  useNestTreblle(expressInstance, {
+    apiKey: 'ExHcu4MRNHE079Gdh1Egz06P3cixPhpD',
+    projectId: 'dsQ5ANUH3CYL3Qb3',
+  });
 
   return app;
 }
