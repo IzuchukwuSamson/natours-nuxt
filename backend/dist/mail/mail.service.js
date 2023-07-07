@@ -29,7 +29,7 @@ let MailService = class MailService {
             },
         });
     }
-    async confirmed(user) {
+    async sendUserConfirmed(user) {
         await this.mailerService.sendMail({
             to: user.email,
             from: '"Support Team" <support@natours.io>',

@@ -2,12 +2,12 @@ import {
   HttpException,
   HttpStatus,
   Injectable,
-  NotFoundException,
+  // NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { InjectQueue } from '@nestjs/bull';
-import { Queue } from 'bull';
+// import { InjectQueue } from '@nestjs/bull';
+// import { Queue } from 'bull';
 import { Signup } from './dto/signup.dto';
 import { UserService } from '../user/user.service';
 import { User } from '../user/entities/user.entity';
@@ -17,6 +17,7 @@ import { MailService } from 'src/mail/mail.service';
 import { UserDetails } from 'src/common/enum/googleUserDetails.enum';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
+import { UpdateUserDto } from '../user/dto/update-user.dto';
 
 @Injectable()
 export class AuthService {
@@ -90,21 +91,31 @@ export class AuthService {
     return this.jwtService.sign(payload);
   }
 
-  async verifyAccount(code: string): Promise<any> {
-    const user = await this.repo.findOne({
-      where: { authConfirmToken: this.code },
-    });
-    if (!user) {
-      // return new HttpException('Invalid Token', HttpStatus.UNAUTHORIZED);
-      throw new NotFoundException('Invalid Token');
-    } else {
-      await this.repo.update(
-        { authConfirmToken: user.authConfirmToken },
-        { emailVerified: true, authConfirmToken: undefined },
-      );
+  async verifyAccount(code: string, updateUser: UpdateUserDto): Promise<any> {
+    try {
+      const user = await this.repo.findOne({
+        where: { authConfirmToken: this.code },
+      });
+      if (!user) {
+        return new HttpException('Invalid Token', HttpStatus.UNAUTHORIZED);
+        // throw new NotFoundException('Invalid Token');
+        // new HttpException('message', 400, { cause: new Error('Some Error') });
+      } else {
+        await this.repo.update(
+          {
+            authConfirmToken: user.authConfirmToken,
+            emailVerified: user.emailVerified,
+          },
+          { emailVerified: true, authConfirmToken: undefined },
+        );
+        await this.mailService.sendUserConfirmed(user);
+
+        return true;
+      }
+    } catch (error) {
+      return new HttpException(error, HttpStatus.INTERNAL_SERVER_ERROR);
+      // new HttpException('message', 400, { cause: new Error('Some Error') });
     }
-    await this.mailService.confirmed(user);
-    return user;
   }
 
   // SIGN WITH GOOGLE

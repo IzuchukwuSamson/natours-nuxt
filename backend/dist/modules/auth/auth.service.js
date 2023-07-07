@@ -72,18 +72,26 @@ let AuthService = class AuthService {
         };
         return this.jwtService.sign(payload);
     }
-    async verifyAccount(code) {
-        const user = await this.repo.findOne({
-            where: { authConfirmToken: this.code },
-        });
-        if (!user) {
-            throw new common_1.NotFoundException('Invalid Token');
+    async verifyAccount(code, updateUser) {
+        try {
+            const user = await this.repo.findOne({
+                where: { authConfirmToken: this.code },
+            });
+            if (!user) {
+                return new common_1.HttpException('Invalid Token', common_1.HttpStatus.UNAUTHORIZED);
+            }
+            else {
+                await this.repo.update({
+                    authConfirmToken: user.authConfirmToken,
+                    emailVerified: user.emailVerified,
+                }, { emailVerified: true, authConfirmToken: undefined });
+                await this.mailService.sendUserConfirmed(user);
+                return true;
+            }
         }
-        else {
-            await this.repo.update({ authConfirmToken: user.authConfirmToken }, { emailVerified: true, authConfirmToken: undefined });
+        catch (error) {
+            return new common_1.HttpException(error, common_1.HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        await this.mailService.confirmed(user);
-        return user;
     }
     async signinwithgoogle(details) {
         console.log('AuthService');

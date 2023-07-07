@@ -63,9 +63,8 @@ let AuthController = class AuthController {
             console.log(error);
         }
     }
-    async verifiedAccount(body) {
-        const verified = await this.authService.verifyAccount(body);
-        return verified;
+    async Verify(body) {
+        return await this.authService.verifyAccount(body.code, body.updateUser);
     }
     me(user) {
         return user;
@@ -101,12 +100,12 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "login", null);
 __decorate([
-    (0, common_1.Get)('confirm?token'),
+    (0, common_1.Post)('/verify'),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object]),
     __metadata("design:returntype", Promise)
-], AuthController.prototype, "verifiedAccount", null);
+], AuthController.prototype, "Verify", null);
 __decorate([
     (0, common_1.Get)('me'),
     (0, common_1.UseGuards)(session_auth_guard_1.SessionAuthGuard, jwt_guard_guard_1.JWTAuthGuard),

@@ -23,7 +23,7 @@ export class MailService {
     });
   }
 
-  async confirmed(user: User) {
+  async sendUserConfirmed(user: User) {
     await this.mailerService.sendMail({
       to: user.email,
       from: '"Support Team" <support@natours.io>',

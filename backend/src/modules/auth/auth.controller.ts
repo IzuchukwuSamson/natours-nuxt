@@ -72,11 +72,16 @@ export class AuthController {
     }
   }
 
-  @Get('confirm?token')
-  async verifiedAccount(@Body() body) {
-    const verified = await this.authService.verifyAccount(body);
+  // @Get('confirm?token')
+  // async verifiedAccount(@Body() body) {
+  //   const verified = await this.authService.verifyAccount(body);
 
-    return verified;
+  //   return verified;
+  // }
+
+  @Post('/verify')
+  async Verify(@Body() body) {
+    return await this.authService.verifyAccount(body.code, body.updateUser);
   }
 
   @Get('me')

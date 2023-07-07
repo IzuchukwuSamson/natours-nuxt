@@ -6,6 +6,7 @@ import { JwtPayload } from './interfaces/jwt-payload.interface';
 import { MailService } from 'src/mail/mail.service';
 import { UserDetails } from 'src/common/enum/googleUserDetails.enum';
 import { Repository } from 'typeorm';
+import { UpdateUserDto } from '../user/dto/update-user.dto';
 export declare class AuthService {
     private readonly repo;
     private readonly userService;
@@ -17,7 +18,7 @@ export declare class AuthService {
     login(email: string, password: string): Promise<User>;
     verifyPayload(payload: JwtPayload): Promise<User>;
     signToken(user: User): string;
-    verifyAccount(code: string): Promise<any>;
+    verifyAccount(code: string, updateUser: UpdateUserDto): Promise<any>;
     signinwithgoogle(details: UserDetails): Promise<User>;
     findUser(id: number): Promise<User>;
 }
