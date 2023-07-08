@@ -1,3 +1,9 @@
 {
-  "conventionalCommits.scopes": ["new", "modules", "plugin", "WIP"]
+  "conventionalCommits.scopes": [
+    "new",
+    "modules",
+    "plugin",
+    "WIP",
+    "component"
+  ]
 }
