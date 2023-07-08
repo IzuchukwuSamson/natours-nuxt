@@ -10,17 +10,17 @@ export class CreateTourDto {
   @IsString()
   difficulty: string;
 
-  @IsNumber()
-  ratingsAverage: number;
+  // @IsNumber()
+  // ratingsAverage: number;
 
-  @IsNumber()
-  ratingsQuantity: number;
+  // @IsNumber()
+  // ratingsQuantity: number;
 
   @IsNumber()
   price: number;
 
-  @IsNumber()
-  priceDiscount: number;
+  // @IsNumber()
+  // priceDiscount: number;
 
   @IsString()
   summary: string;
@@ -31,12 +31,12 @@ export class CreateTourDto {
   @IsString()
   imageCover: string;
 
-  @IsDate()
-  startDates: Date;
+  // @IsDate()
+  // startDates: Date;
 
-  @IsString()
-  startLocation: string;
+  // @IsString()
+  // startLocation: string;
 
-  @IsString()
-  locations: string;
+  // @IsString()
+  // locations: string;
 }

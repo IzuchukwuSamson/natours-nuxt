@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Tour = void 0;
 const typeorm_1 = require("typeorm");
 const slugify_1 = require("slugify");
+const user_entity_1 = require("../../user/entities/user.entity");
 let Tour = class Tour {
     generateSlug() {
         this.slug = (0, slugify_1.default)(`${this.name}`, { lower: true });
@@ -27,7 +28,7 @@ let Tour = class Tour {
     }
 };
 __decorate([
-    (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, typeorm_1.PrimaryGeneratedColumn)('uuid'),
     __metadata("design:type", Number)
 ], Tour.prototype, "id", void 0);
 __decorate([
@@ -44,8 +45,24 @@ __decorate([
 ], Tour.prototype, "duration", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    __metadata("design:type", Number)
+], Tour.prototype, "maxGroupSize", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Tour.prototype, "difficulty", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Tour.prototype, "summary", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Tour.prototype, "description", void 0);
+__decorate([
+    (0, typeorm_1.Column)(),
+    __metadata("design:type", String)
+], Tour.prototype, "imageCover", void 0);
 __decorate([
     (0, typeorm_1.Column)({ default: 4.5 }),
     __metadata("design:type", Number)
@@ -60,22 +77,6 @@ __decorate([
 ], Tour.prototype, "price", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
-    __metadata("design:type", Number)
-], Tour.prototype, "priceDiscount", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Tour.prototype, "summary", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Tour.prototype, "description", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
-    __metadata("design:type", String)
-], Tour.prototype, "imageCover", void 0);
-__decorate([
-    (0, typeorm_1.Column)(),
     __metadata("design:type", Date)
 ], Tour.prototype, "startDates", void 0);
 __decorate([
@@ -86,6 +87,10 @@ __decorate([
     (0, typeorm_1.Column)(),
     __metadata("design:type", String)
 ], Tour.prototype, "locations", void 0);
+__decorate([
+    (0, typeorm_1.OneToMany)(() => user_entity_1.User, (users) => users.role),
+    __metadata("design:type", Array)
+], Tour.prototype, "guide", void 0);
 __decorate([
     (0, typeorm_1.CreateDateColumn)(),
     __metadata("design:type", Date)

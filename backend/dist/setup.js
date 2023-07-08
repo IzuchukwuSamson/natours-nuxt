@@ -7,7 +7,6 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const passport = require("passport");
 const MySQLStore = require("express-mysql-session");
-const treblle_1 = require("treblle");
 const app_module_1 = require("./app.module");
 const swagger_1 = require("@nestjs/swagger");
 function setup(app) {
@@ -61,11 +60,6 @@ function setup(app) {
     app.use(passport.initialize());
     app.use(passport.session());
     (0, class_validator_1.useContainer)(app.select(app_module_1.AppModule), { fallbackOnErrors: true });
-    const expressInstance = app.getHttpAdapter().getInstance();
-    (0, treblle_1.useNestTreblle)(expressInstance, {
-        apiKey: 'ExHcu4MRNHE079Gdh1Egz06P3cixPhpD',
-        projectId: 'dsQ5ANUH3CYL3Qb3',
-    });
     return app;
 }
 exports.setup = setup;

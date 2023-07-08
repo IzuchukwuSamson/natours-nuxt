@@ -12,7 +12,7 @@ export class TourService {
   create(createTourDto: CreateTourDto) {
     const newTour = this.repo.create(createTourDto);
     // console.log(newTour);
-    return newTour;
+    return this.repo.save(newTour);
   }
 
   async findAll(): Promise<Tour[]> {

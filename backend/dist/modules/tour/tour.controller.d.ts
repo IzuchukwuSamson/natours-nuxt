@@ -5,7 +5,7 @@ import { Tour } from './entities/tour.entity';
 export declare class TourController {
     private readonly tourService;
     constructor(tourService: TourService);
-    create(createTourDto: CreateTourDto): Tour;
+    create(createTourDto: CreateTourDto): Promise<Tour>;
     findAll(): Promise<Tour[]>;
     findOne(id: string): Promise<Tour>;
     getUserTours(req: any): Promise<Tour[]>;

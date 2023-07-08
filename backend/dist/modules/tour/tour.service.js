@@ -23,7 +23,7 @@ let TourService = class TourService {
     }
     create(createTourDto) {
         const newTour = this.repo.create(createTourDto);
-        return newTour;
+        return this.repo.save(newTour);
     }
     async findAll() {
         const tours = await this.repo.find();

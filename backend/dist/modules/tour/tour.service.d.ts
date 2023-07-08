@@ -4,7 +4,7 @@ import { Tour } from './entities/tour.entity';
 export declare class TourService {
     private repo;
     constructor(repo: Repository<Tour>);
-    create(createTourDto: CreateTourDto): Tour;
+    create(createTourDto: CreateTourDto): Promise<Tour>;
     findAll(): Promise<Tour[]>;
     findOne(id: number): Promise<Tour>;
     findUserTours(id: string): Promise<Tour[] | null>;

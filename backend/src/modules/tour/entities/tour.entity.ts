@@ -17,7 +17,7 @@ import { User } from 'src/modules/user/entities/user.entity';
 
 @Entity()
 export class Tour {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('uuid')
   id: number;
 
   @Column()
@@ -30,19 +30,10 @@ export class Tour {
   duration: number;
 
   @Column()
+  maxGroupSize: number;
+
+  @Column()
   difficulty: string;
-
-  @Column({ default: 4.5 })
-  ratingsAverage: number;
-
-  @Column({ default: 0 })
-  ratingsQuantity: number;
-
-  @Column()
-  price: number;
-
-  @Column()
-  priceDiscount: number;
 
   @Column()
   summary: string;
@@ -53,6 +44,18 @@ export class Tour {
   @Column()
   imageCover: string;
 
+  @Column({ default: 4.5 })
+  ratingsAverage: number;
+
+  @Column({ default: 0 })
+  ratingsQuantity: number;
+
+  @Column()
+  price: number;
+
+  // @Column()
+  // priceDiscount: number;
+
   @Column()
   startDates: Date;
 
@@ -62,8 +65,8 @@ export class Tour {
   @Column()
   locations: string;
 
-  // @OneToMany(() => User, (users) => users.role)
-  // guide: User[];
+  @OneToMany(() => User, (users) => users.role)
+  guide: User[];
 
   @CreateDateColumn()
   createdAt: Date;
