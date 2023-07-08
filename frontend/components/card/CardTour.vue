@@ -33,7 +33,7 @@ div(class="card-container")
       p(class="card__ratings") 
         span(class="card__footer-value") 4.9
         span(class="card__footer-text") rating (21)
-      a(href="#" class="btn btn--green btn--small") Details
+      NuxtLink(to="/tours/1" class="btn btn--green btn--small") Details
 </template>
 
 <script>

@@ -2,7 +2,6 @@
 header(class="header")
   nav(class="nav nav--tours") 
     nuxt-link(to="/" class="nav__el") All tours
-    nuxt-link(to="overview" class="nav__el") Overview
     form(class="nav__search")
       button(class="nav__search-btn")
         svg
@@ -19,7 +18,7 @@ header(class="header")
     nuxt-link(to="signup" class="nav__el nav__el--cta") Sign up
 </template>
 
-<script lang="">
+<script lang="ts">
 export default defineComponent({
   setup() {},
 });
