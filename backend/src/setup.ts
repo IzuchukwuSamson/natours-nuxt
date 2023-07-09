@@ -86,12 +86,12 @@ export function setup(app: INestApplication): INestApplication {
 
   useContainer(app.select(AppModule), { fallbackOnErrors: true });
 
-  // const expressInstance = app.getHttpAdapter().getInstance();
+  const expressInstance = app.getHttpAdapter().getInstance();
 
-  // useNestTreblle(expressInstance, {
-  //   apiKey: 'ExHcu4MRNHE079Gdh1Egz06P3cixPhpD',
-  //   projectId: 'dsQ5ANUH3CYL3Qb3',
-  // });
+  useNestTreblle(expressInstance, {
+    apiKey: process.env.TREBLLE_API_KEY,
+    projectId: process.env.TREBLLE_PROJECT_ID,
+  });
 
   return app;
 }
