@@ -1,5 +1,9 @@
-<template>
-  <div>Booking</div>
+<template lang="pug">
+.user-view__content
+  .user-view__form-container
+    AccountWrapper(title="My Bookings")
+      
+  .line &nbsp;
 </template>
 
 <script>

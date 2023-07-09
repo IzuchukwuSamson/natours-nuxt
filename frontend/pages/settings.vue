@@ -1,5 +1,6 @@
 <template>
-  <AccountInfoSettings />
+  <!-- <AccountInfoSettings /> -->
+  <AccountPage />
 </template>
 
 <script>

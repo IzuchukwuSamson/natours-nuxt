@@ -1,7 +1,7 @@
 <template lang="pug">            
 div
-  h2 {{ title }}
-  slot
+    h2(class="heading-secondary ma-bt-md user-view__content user-view__form-container") {{ title }}
+    slot
     
 </template>
 
@@ -10,7 +10,7 @@ export default defineComponent({
   props: {
     title: {
       type: String,
-      default: "Admin Dashboard",
+      default: "Your Account Settings",
     },
   },
 

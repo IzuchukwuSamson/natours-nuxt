@@ -1,9 +1,7 @@
-<template>
-  <div>Billing</div>
+<template lang="pug">
+.user-view__content
+  .user-view__form-container
+    AccountWrapper(title="Payments Made")
+      
+  .line &nbsp;
 </template>
-
-<script>
-export default {};
-</script>
-
-<style lang="scss" scoped></style>

@@ -8,7 +8,7 @@ main.main
                     li(v-for="(menu, index) in menuItems" :key="index" @click="activeTab(index)")
                         NuxtLink(href='#')                       
                             svg
-                                use(xlink:href='img/icons.svg#icon-map')
+                                use(xlink:href='@/assets/img/icons.svg#icon-map')
                             | {{ menu.label }}
         div
             div(v-if="tab == 0")
@@ -23,13 +23,6 @@ main.main
 
 <script lang="ts">
 export default defineComponent({
-  props: {
-    title: {
-      type: String,
-      default: "Admin Dashboard",
-    },
-  },
-
   setup() {
     const tab = ref(0);
     const activeTab = (tabNumber: number) => (tab.value = tabNumber);
