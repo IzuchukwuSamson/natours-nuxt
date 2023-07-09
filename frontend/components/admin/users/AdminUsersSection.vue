@@ -1,5 +1,6 @@
-<template>
-  <div>Manage Users</div>
+<template lang="pug">
+AdminWrapper(title="Manage Users")
+  h1 Manage Users Contents
 </template>
 
 <script>

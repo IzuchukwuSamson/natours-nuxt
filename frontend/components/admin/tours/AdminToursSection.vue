@@ -1,5 +1,6 @@
-<template>
-  <div>Manage Tours</div>
+<template lang="pug">
+AdminWrapper(title="Manage Tours")
+  h1 Manage Tours Contents
 </template>
 
 <script>

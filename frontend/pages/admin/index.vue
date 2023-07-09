@@ -1,6 +1,6 @@
 <template>
   <div>
-    <AdminWrapper />
+    <AdminPage />
   </div>
 </template>
 
