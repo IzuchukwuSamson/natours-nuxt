@@ -24,6 +24,7 @@
     "migration:revert": "npm run typeorm -- migration:revert"
   },
   "dependencies": {
+    "@google-cloud/storage": "^6.11.0",
     "@nestjs-modules/mailer": "^1.8.1",
     "@nestjs/bull": "^10.0.0",
     "@nestjs/common": "^9.0.0",
@@ -35,6 +36,7 @@
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/swagger": "^7.0.4",
     "@nestjs/typeorm": "^10.0.0",
+    "@types/multer": "^1.4.7",
     "bcrypt": "^5.1.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0",

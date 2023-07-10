@@ -15,6 +15,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { MailModule } from './mail/mail.module';
 import { PaymentModule } from './payment/payment.module';
 import { PassportModule } from '@nestjs/passport';
+import { StorageModule } from './storage/storage.module';
 // import bull from './config/bull.config';
 // import mail from './config/mail.config';
 
@@ -65,6 +66,8 @@ import { PassportModule } from '@nestjs/passport';
     PaymentModule,
 
     PassportModule.register({ session: true }),
+
+    StorageModule,
   ],
 })
 export class AppModule {}
