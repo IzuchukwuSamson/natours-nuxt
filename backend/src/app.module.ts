@@ -16,6 +16,7 @@ import { MailModule } from './mail/mail.module';
 import { PaymentModule } from './payment/payment.module';
 import { PassportModule } from '@nestjs/passport';
 import { StorageModule } from './storage/storage.module';
+import { UploadsModule } from './uploads/uploads.module';
 // import bull from './config/bull.config';
 // import mail from './config/mail.config';
 
@@ -68,6 +69,8 @@ import { StorageModule } from './storage/storage.module';
     PassportModule.register({ session: true }),
 
     StorageModule,
+
+    UploadsModule,
   ],
 })
 export class AppModule {}
