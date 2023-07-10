@@ -20,7 +20,7 @@ import { StorageFile } from 'src/storage/utils/storage-file';
 export class StorageController {
   constructor(private storageService: StorageService) {}
 
-  @Post()
+  @Post('upload')
   @UseInterceptors(
     FileInterceptor('file', {
       limits: {
@@ -29,16 +29,17 @@ export class StorageController {
       },
     }),
   )
-  async uploadMedia(
-    @UploadedFile() file: Express.Multer.File,
-    @Body('mediaId') mediaId: string,
+  async uploadFile(
+    @UploadedFile() @Body() mediaId: string,
+    file: Express.Multer.File,
   ) {
     await this.storageService.save(
-      'media/' + mediaId,
+      `media ${mediaId}`,
       file.mimetype,
       file.buffer,
-      [{ mediaId: mediaId }],
+      [{ mediaId }],
     );
+    console.log(file);
   }
 
   @Get('/:mediaId')

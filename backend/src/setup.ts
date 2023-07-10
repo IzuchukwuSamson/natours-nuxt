@@ -88,10 +88,10 @@ export function setup(app: INestApplication): INestApplication {
 
   const expressInstance = app.getHttpAdapter().getInstance();
 
-  useNestTreblle(expressInstance, {
-    apiKey: process.env.TREBLLE_API_KEY,
-    projectId: process.env.TREBLLE_PROJECT_ID,
-  });
+  // useNestTreblle(expressInstance, {
+  //   apiKey: process.env.TREBLLE_API_KEY,
+  //   projectId: process.env.TREBLLE_PROJECT_ID,
+  // });
 
   return app;
 }

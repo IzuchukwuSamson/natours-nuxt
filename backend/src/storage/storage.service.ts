@@ -34,6 +34,10 @@ export class StorageService {
         metadata: object,
       });
     });
+    stream.on('error', (error) => {
+      console.error('stream error', error);
+      return error;
+    });
     stream.end(media);
   }
 
@@ -57,10 +61,11 @@ export class StorageService {
   }
 
   async getWithMetaData(path: string): Promise<StorageFile> {
-    const [metadata] = await this.storage
+    const [bucketObj] = await this.storage
       .bucket(this.bucket)
       .file(path)
       .getMetadata();
+    const { metadata } = bucketObj;
     const fileResponse: DownloadResponse = await this.storage
       .bucket(this.bucket)
       .file(path)
