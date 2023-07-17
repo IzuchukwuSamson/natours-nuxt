@@ -3,5 +3,6 @@ div
   GlobalSiteHeader
   slot
   GlobalSiteFooter
+  
 
 </template>
